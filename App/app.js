@@ -75,21 +75,21 @@ const showTime = () => {
     return new Promise((resolve, reject) => {
         try {
             resolve({
-                'Max_read': dump.maxreadTime,
-                'Min_read': dump.minreadTime,
-                'Med_read': dump.medreadTime,
+                'Max_read': dump.maxreadTime + ' ms',
+                'Min_read': dump.minreadTime + ' ms',
+                'Med_read': dump.medreadTime + ' ms',
 
-                'Max_parse': dump.maxparseTime,
-                'Min_parse': dump.minparseTime,
-                'Med_parse': dump.medparseTime,
+                'Max_parse': dump.maxparseTime + ' ms',
+                'Min_parse': dump.minparseTime + ' ms',
+                'Med_parse': dump.medparseTime + ' ms',
 
-                'Max_save': dump.maxsaveTime,
-                'Min_save': dump.minsaveTime,
-                'Med_save': dump.medsaveTime,
+                'Max_save': dump.maxsaveTime + ' ms',
+                'Min_save': dump.minsaveTime + ' ms',
+                'Med_save': dump.medsaveTime + ' ms',
 
-                'read': dump.readTime,
-                'parse': dump.parseTime,
-                'save': dump.saveTime
+                // 'read': dump.readTime,
+                // 'parse': dump.parseTime,
+                // 'save': dump.saveTime
             })
         } catch (error) {
             reject({ 'Promise': 'showTime', 'Erro': error })

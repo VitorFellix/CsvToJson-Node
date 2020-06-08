@@ -13,6 +13,11 @@ class JsonSaver {
                 const startTime = new Date().getTime();
 
                 if (dump.parserFinished == true) {
+                    /*
+                    file.write(
+                            JSON.stringify(dump.jsonDump)
+                    )
+                    */
                     dump.jsonDump.forEach(element => {
 
                         var savetimeStart = new Date().getTime()
@@ -27,11 +32,7 @@ class JsonSaver {
                             })
                     })
 
-                    /*
-                    file.write(
-                            JSON.stringify(dump.jsonDump)
-                    )
-                    */
+
 
                     this.file.on('error', function (err) {
                         console.log({
@@ -55,9 +56,9 @@ class JsonSaver {
                         resolve({
                             'Process': 'Save',
                             'Result': 'Success',
-                            'StartTime': startTime,
-                            'FinishTime': finishTime,
-                            'Time': Time
+                            'StartTime': startTime + ' ms',
+                            'FinishTime': finishTime + ' ms',
+                            'Time': Time + ' ms'
                         })
                     }
                     )

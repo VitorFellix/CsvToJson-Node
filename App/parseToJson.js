@@ -24,9 +24,9 @@ class JsonParser {
                         resolve({
                             'Process': 'Parse',
                             'Result': 'Success',
-                            'StartTime': startTime,
-                            'FinishTime': finishTime,
-                            'Time': Time
+                            'StartTime': startTime + ' ms',
+                            'FinishTime': finishTime + ' ms',
+                            'Time': Time + ' ms'
                         })
 
                         clearInterval(loop);

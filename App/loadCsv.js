@@ -24,16 +24,18 @@ class CsvLoader {
                     var readLinetimeStart = new Date().getTime()
 
                     this.pushLine(line).then(() => {
+
                         var readLinetimeFinish = new Date().getTime()
                         var readLinetime = readLinetimeFinish - readLinetimeStart
 
-                        dump.readTime.push(readLinetime)
+                        dump.readTime.push(readLinetime, true)
 
                         if (readLinetime > dump.maxreadTime) { dump.maxreadTime = readLinetime }
                         if (readLinetime < dump.minreadTime) { dump.minreadTime = readLinetime }
                     })
                 })
                 rl.on('close', () => {
+                    this.counter--;
                     dump.csvLoaded = true
                     dump.numberOfRegistries = this.counter
 
@@ -48,9 +50,9 @@ class CsvLoader {
                     resolve({
                         'Process': 'Read',
                         'Result': 'Success',
-                        'Start_Time': startTime,
-                        'Finish_Time': finishTime,
-                        'Time': Time,
+                        'Start_Time': startTime + ' ms',
+                        'Finish_Time': finishTime + ' ms',
+                        'Time': Time + ' ms',
                         'Total_of_Lines': this.counter
                     })
                 })
@@ -64,11 +66,11 @@ class CsvLoader {
         })
     }
 
-    pushLine(line, jump) {
+    pushLine(line) {
         return new Promise((resolve, reject) => {
             try {
-                if (jump && this.counter == 0) {
-                    // Nao faz nada
+                if (this.counter == 0) {
+                    this.counter++;
                 } else {
                     dump.csvDump.push(line);
                     this.counter++;
